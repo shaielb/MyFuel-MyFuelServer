@@ -1,0 +1,8 @@
+<configuration>
+	<chains>
+		<Insert>dbInserter</Insert>
+		<Collect>dbCollector</Collect>
+		<Update>dbUpdater</Update>
+		<Remove>dbRemover</Remove>
+	</chains>
+</configuration>

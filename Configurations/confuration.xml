@@ -1,0 +1,16 @@
+<configuration>
+	<chains>
+		<Insert>dbInserter</Insert>
+		<Collect>dbCollector</Collect>
+		<Update>dbUpdater</Update>
+		<Remove>dbRemover</Remove>
+		<Filter>dbFilter</Filter>
+	</chains>
+	<dbParameters>
+		<host>localhost</host>
+		<port>3306</port>
+		<dbName>myfuel</dbName>
+		<userName>myfuel</userName>
+		<password>1234</password>
+	</dbParameters>
+</configuration>

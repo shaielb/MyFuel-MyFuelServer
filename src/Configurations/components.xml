@@ -1,0 +1,23 @@
+<components>
+	<db.DbComponent>
+		<id>dbComponent</id>
+		<single-instance>true</single-instance>
+	</db.DbComponent>
+	
+	<messengers.cormessengers.VerifierNode>
+		<id>verifier</id>
+	</messengers.cormessengers.VerifierNode>
+	
+	<messengers.cormessengers.DbInsertNode>
+		<id>dbInserter</id>
+	</messengers.cormessengers.DbInsertNode>
+	<messengers.cormessengers.DbCollectNode>
+		<id>dbCollector</id>
+	</messengers.cormessengers.DbCollectNode>
+	<messengers.cormessengers.DbUpdateNode>
+		<id>dbUpdater</id>
+	</messengers.cormessengers.DbUpdateNode>
+	<messengers.cormessengers.DbRemoveNode>
+		<id>dbRemover</id>
+	</messengers.cormessengers.DbRemoveNode>
+</components>
