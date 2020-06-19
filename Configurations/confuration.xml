@@ -5,6 +5,7 @@
 		<Update>dbUpdater</Update>
 		<Remove>dbRemover</Remove>
 		<Filter>dbFilter</Filter>
+		<Login>login</Login>
 	</chains>
 	<dbParameters>
 		<host>localhost</host>

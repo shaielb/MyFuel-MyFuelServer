@@ -23,4 +23,7 @@
 	<messengers.cormessengers.DbFilterNode>
 		<id>dbFilter</id>
 	</messengers.cormessengers.DbFilterNode>
+	<messengers.cormessengers.LoginNode>
+		<id>login</id>
+	</messengers.cormessengers.LoginNode>
 </components>

@@ -20,16 +20,32 @@ import ocsf.server.AbstractServer;
 import ocsf.server.ConnectionToClient;
 import pool.ObjectPool;
 
+/**
+ * @author shaielb
+ *
+ */
 @SuppressWarnings("unchecked")
 public class RequestsHandler extends AbstractServer  {
 
 	//Class variables *************************************************
+	/**
+	 * 
+	 */
 	private Boolean _fromJar = true;
 
+	/**
+	 * 
+	 */
 	private Map<String, Object> _corChains;
 
+	/**
+	 * 
+	 */
 	private IOrganizer<RequestType, Message> _corOrganizer;
 
+	/**
+	 * 
+	 */
 	private ObjectPool<Message> _messagesPool = new ObjectPool<Message>(() -> new Message());
 
 	//Constructors ****************************************************
@@ -41,6 +57,10 @@ public class RequestsHandler extends AbstractServer  {
 	 * @throws IllegalAccessException 
 	 * @throws InstantiationException 
 	 */
+	/**
+	 * @param port
+	 * @throws Exception
+	 */
 	public RequestsHandler(int port) throws Exception 
 	{
 		super(port);
@@ -48,6 +68,9 @@ public class RequestsHandler extends AbstractServer  {
 		Services.initialize();
 	}
 
+	/**
+	 * @throws Exception
+	 */
 	private void constructCor() throws Exception {
 		_corOrganizer = CorFactory.createOrganizer();
 
@@ -67,7 +90,9 @@ public class RequestsHandler extends AbstractServer  {
 			String xml = String.format("%s\\Configurations\\components.xml", localPath);
 			_corOrganizer.getIocContainer().register(new File(xml), "components");
 
-			_corChains = (Map<String, Object>) Configuration.configuration().get("chains");
+			localPath = System.getProperty("user.dir");
+			xml = String.format("%s\\Configurations\\confuration.xml", localPath);
+			_corChains = (Map<String, Object>) Configuration.configuration(xml).get("chains");
 		}
 
 		Map<RequestType, List<String>> map = new HashMap<RequestType, List<String>>();
@@ -92,6 +117,9 @@ public class RequestsHandler extends AbstractServer  {
 	 * @param msg The message received from the client.
 	 * @param client The connection from which the message originated.
 	 */
+	/**
+	 *
+	 */
 	@Override
 	public void handleMessageFromClient(Object msg, ConnectionToClient client)
 	{
@@ -103,6 +131,7 @@ public class RequestsHandler extends AbstractServer  {
 		try
 		{
 			Response response = message.getResponse();
+			System.out.println("Sending Message response: " + response + " to " + client);
 			client.sendToClient(response);
 		}
 		catch (Exception e) {
@@ -119,6 +148,9 @@ public class RequestsHandler extends AbstractServer  {
 	 * This method overrides the one in the superclass.  Called
 	 * when the server starts listening for connections.
 	 */
+	/**
+	 *
+	 */
 	protected void serverStarted()
 	{
 		System.out.println
@@ -129,12 +161,18 @@ public class RequestsHandler extends AbstractServer  {
 	 * This method overrides the one in the superclass.  Called
 	 * when the server stops listening for connections.
 	 */
+	/**
+	 *
+	 */
 	protected void serverStopped()
 	{
 		System.out.println
 		("Server has stopped listening for connections.");
 	}
 
+	/**
+	 * @return
+	 */
 	public IOrganizer<RequestType, Message> getCorOrganizer() {
 		return _corOrganizer;
 	}
